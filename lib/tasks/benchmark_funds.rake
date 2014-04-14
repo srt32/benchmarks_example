@@ -1,6 +1,6 @@
 desc 'Benchmark funds_raised methods'
 
-ITERATIONS = 1000
+ITERATIONS = 100_000
 
 task benchmark_sql: :environment do
   GC.disable
@@ -9,8 +9,10 @@ task benchmark_sql: :environment do
   Benchmark.bm do |bm|
     bm.report('sql') do
       ITERATIONS.times do
-        campaign.funds_raised_sql
-        Campaign.connection.clear_query_cache
+        Campaign.uncached do
+          campaign.funds_raised_sql
+          Campaign.connection.clear_query_cache
+        end
       end
     end
   end
@@ -25,8 +27,10 @@ task benchmark_ruby: :environment do
   Benchmark.bm do |bm|
     bm.report('ruby') do
       ITERATIONS.times do
-        campaign.funds_raised_ruby
-        Campaign.connection.clear_query_cache
+        Campaign.uncached do
+          campaign.funds_raised_ruby
+          Campaign.connection.clear_query_cache
+        end
       end
     end
   end

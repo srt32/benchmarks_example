@@ -14,6 +14,14 @@ After setting up, you can run the application using [foreman]:
 
 [foreman]: http://ddollar.github.io/foreman/
 
+Benchmarking
+-----------
+
+* follow the above steps to get set up
+* run `rake db:seed` to seed your database
+* run `rake benchmark_sql; rake benchmark_ruby` to see results
+
+
 Guidelines
 ----------
 
