@@ -17,6 +17,8 @@ module MapInject
 
     config.active_record.default_timezone = :utc
 
+    config.middleware.delete "ActiveRecord::QueryCache"
+
     config.generators do |generate|
       generate.helper false
       generate.javascript_engine false

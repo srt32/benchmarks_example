@@ -5,11 +5,19 @@ describe Campaign, 'Associations' do
 end
 
 describe Campaign, '#funds_raised' do
-  it 'sums up the loans' do
+  it '_sql' do
     campaign = create(:campaign)
     create_list(:loan, 5)
     create_list(:loan, 5, campaign: campaign)
 
-    expect(campaign.funds_raised).to eq 50
+    expect(campaign.funds_raised_sql).to eq 50
+  end
+
+  it '_ruby' do
+    campaign = create(:campaign)
+    create_list(:loan, 5)
+    create_list(:loan, 5, campaign: campaign)
+
+    expect(campaign.funds_raised_ruby).to eq 50
   end
 end

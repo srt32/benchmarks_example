@@ -9,8 +9,8 @@
 Campaign.destroy_all
 Loan.destroy_all
 
-campaigns = FactoryGirl.create_list(:campaign, 10)
+campaigns = FactoryGirl.create_list(:campaign, 100)
 
 campaigns.each do |campaign|
-  FactoryGirl.create_list(:loan, 100, campaign: campaign)
+  FactoryGirl.create_list(:loan, 250, campaign: campaign)
 end
